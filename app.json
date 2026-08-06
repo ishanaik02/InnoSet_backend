@@ -1,0 +1,60 @@
+{
+  "expo": {
+    "name": "InnoSet",
+    "slug": "service-engineer-trip-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "backgroundColor": "#0B5FFF"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.innovativeengineers.innoset",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We need your location to track trip distance for TA/DA calculation.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "We need your location in the background to keep tracking your trip route.",
+        "NSCameraUsageDescription": "Camera access is needed to capture receipts and bills.",
+        "NSPhotoLibraryUsageDescription": "Photo access is needed to upload receipts and bills."
+      },
+      "backgroundModes": [
+        "location"
+      ]
+    },
+    "android": {
+      "package": "com.innovativeengineers.innoset",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_MEDIA_IMAGES",
+        "POST_NOTIFICATIONS"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location to track trips.",
+          "isAndroidBackgroundLocationEnabled": true,
+          "isAndroidForegroundServiceEnabled": true
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "137e98e0-28a4-4c36-a39e-7bd89ef28061"
+      }
+    }
+  }
+}
