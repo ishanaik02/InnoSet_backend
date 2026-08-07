@@ -31,11 +31,13 @@ export default function LoginScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <View style={styles.logoWrap}>
-        <View style={styles.logoCircle}>
-          <Text style={styles.logoText}>SE</Text>
-        </View>
-        <Text style={typography.h1}>Trip Tracker</Text>
-        <Text style={styles.subtitle}>Service Engineer TA/DA Management</Text>
+        <Image
+          source={require('../../assets/adaptive-icon.png')}
+          style={styles.logoImage}
+          resizeMode="contain"
+        />
+        <Text style={typography.h1}>InnoSet</Text>
+        <Text style={styles.subtitle}>Trip Tracking & TA/DA Management</Text>
       </View>
 
       <View style={styles.form}>
@@ -68,16 +70,11 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background, padding: spacing.lg, justifyContent: 'center' },
   logoWrap: { alignItems: 'center', marginBottom: spacing.xl },
-  logoCircle: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
-    backgroundColor: colors.primary,
-    alignItems: 'center',
-    justifyContent: 'center',
+  logoImage: {
+    width: 88,
+    height: 88,
     marginBottom: spacing.md,
   },
-  logoText: { color: colors.white, fontSize: 24, fontWeight: '700' },
   subtitle: { ...typography.caption, marginTop: 4 },
   form: {
     backgroundColor: colors.card,
