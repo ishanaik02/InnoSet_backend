@@ -261,6 +261,7 @@ export default function StayTripScreen({ navigation }) {
               <TextInput
                 style={styles.input}
                 placeholder="Amount (₹)"
+                placeholderTextColor={colors.textMuted}
                 keyboardType="numeric"
                 value={expenseAmount}
                 onChangeText={setExpenseAmount}
@@ -268,6 +269,7 @@ export default function StayTripScreen({ navigation }) {
               <TextInput
                 style={styles.input}
                 placeholder="Notes / comments (optional)"
+                placeholderTextColor={colors.textMuted}
                 value={expenseNotes}
                 onChangeText={setExpenseNotes}
               />
@@ -311,6 +313,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: 12,
     fontSize: 15,
+    color: colors.text,
     backgroundColor: colors.background,
     marginBottom: spacing.sm,
   },

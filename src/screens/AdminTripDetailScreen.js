@@ -235,6 +235,7 @@ export default function AdminTripDetailScreen({ route, navigation }) {
           <TextInput
             style={styles.input}
             placeholder="Reimbursement amount (₹)"
+            placeholderTextColor={colors.textMuted}
             keyboardType="decimal-pad"
             value={reimbursementAmount}
             onChangeText={setReimbursementAmount}
@@ -257,6 +258,7 @@ export default function AdminTripDetailScreen({ route, navigation }) {
           <TextInput
             style={styles.input}
             placeholder="e.g. Fuel bill only covers actual distance travelled"
+            placeholderTextColor={colors.textMuted}
             value={reason}
             onChangeText={setReason}
             multiline
@@ -336,6 +338,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: 12,
     fontSize: 15,
+    color: colors.text,
     backgroundColor: colors.background,
     marginBottom: spacing.sm,
     minHeight: 44,

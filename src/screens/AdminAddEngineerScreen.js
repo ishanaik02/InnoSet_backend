@@ -62,12 +62,13 @@ export default function AdminAddEngineerScreen({ navigation }) {
         </Text>
 
         <Text style={styles.label}>Full Name *</Text>
-        <TextInput style={styles.input} placeholder="e.g. Ramesh Kumar" value={name} onChangeText={setName} />
+        <TextInput style={styles.input} placeholderTextColor={colors.textMuted} placeholder="e.g. Ramesh Kumar" value={name} onChangeText={setName} />
 
         <Text style={styles.label}>Employee ID *</Text>
         <TextInput
           style={styles.input}
           placeholder="e.g. EMP1024"
+          placeholderTextColor={colors.textMuted}
           value={employeeId}
           onChangeText={setEmployeeId}
           autoCapitalize="characters"
@@ -77,6 +78,7 @@ export default function AdminAddEngineerScreen({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="e.g. ramesh@company.com"
+          placeholderTextColor={colors.textMuted}
           value={email}
           onChangeText={setEmail}
           autoCapitalize="none"
@@ -118,6 +120,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: 12,
     fontSize: 15,
+    color: colors.text,
     backgroundColor: colors.background,
     marginBottom: spacing.sm,
     minHeight: 44,

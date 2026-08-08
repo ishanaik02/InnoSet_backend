@@ -94,6 +94,7 @@ export default function NewTripScreen({ navigation }) {
           <TextInput
             style={[styles.input, { flex: 1 }]}
             placeholder="Enter start location"
+            placeholderTextColor={colors.textMuted}
             value={startLocation}
             onChangeText={setStartLocation}
           />
@@ -111,6 +112,7 @@ export default function NewTripScreen({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Enter customer site address"
+          placeholderTextColor={colors.textMuted}
           value={destination}
           onChangeText={setDestination}
         />
@@ -205,6 +207,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: 12,
     fontSize: 15,
+    color: colors.text,
     backgroundColor: colors.background,
     marginBottom: spacing.sm,
   },

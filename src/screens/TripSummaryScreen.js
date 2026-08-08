@@ -159,6 +159,7 @@ export default function TripSummaryScreen({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Caller / site manager name"
+          placeholderTextColor={colors.textMuted}
           value={callerDetails.callerName || ''}
           onChangeText={(callerName) => setCallerDetails((current) => ({ ...current, callerName }))}
         />
@@ -169,6 +170,7 @@ export default function TripSummaryScreen({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Additional kilometres"
+          placeholderTextColor={colors.textMuted}
           keyboardType="decimal-pad"
           value={additionalKm}
           onChangeText={setAdditionalKm}
@@ -176,6 +178,7 @@ export default function TripSummaryScreen({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Reason for additional kilometres (optional)"
+          placeholderTextColor={colors.textMuted}
           value={additionalKmReason}
           onChangeText={setAdditionalKmReason}
           multiline
@@ -187,6 +190,7 @@ export default function TripSummaryScreen({ navigation }) {
         <TextInput
           style={[styles.input, styles.multilineInput]}
           placeholder="Add any trip or reimbursement remarks"
+          placeholderTextColor={colors.textMuted}
           value={engineerRemarks}
           onChangeText={setEngineerRemarks}
           multiline
@@ -200,6 +204,7 @@ export default function TripSummaryScreen({ navigation }) {
           <TextInput
             style={styles.input}
             placeholder="Amount from ticket (₹)"
+            placeholderTextColor={colors.textMuted}
             keyboardType="numeric"
             value={ticketAmount}
             onChangeText={setTicketAmount}
@@ -282,6 +287,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: 12,
     fontSize: 15,
+    color: colors.text,
     backgroundColor: colors.background,
     marginBottom: spacing.sm,
   },

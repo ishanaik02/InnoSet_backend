@@ -31,13 +31,11 @@ export default function LoginScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <View style={styles.logoWrap}>
-        <Image
-          source={require('../../assets/adaptive-icon.png')}
-          style={styles.logoImage}
-          resizeMode="contain"
-        />
-        <Text style={typography.h1}>InnoSet</Text>
-        <Text style={styles.subtitle}>Trip Tracking & TA/DA Management</Text>
+        <View style={styles.logoCircle}>
+          <Text style={styles.logoText}>SE</Text>
+        </View>
+        <Text style={typography.h1}>Trip Tracker</Text>
+        <Text style={styles.subtitle}>Service Engineer TA/DA Management</Text>
       </View>
 
       <View style={styles.form}>
@@ -45,6 +43,7 @@ export default function LoginScreen() {
         <TextInput
           style={styles.input}
           placeholder="e.g. EMP1024 or you@company.com"
+          placeholderTextColor={colors.textMuted}
           autoCapitalize="none"
           value={employeeId}
           onChangeText={setEmployeeId}
@@ -54,6 +53,7 @@ export default function LoginScreen() {
         <TextInput
           style={styles.input}
           placeholder="••••••••"
+          placeholderTextColor={colors.textMuted}
           secureTextEntry
           value={password}
           onChangeText={setPassword}
@@ -70,11 +70,16 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background, padding: spacing.lg, justifyContent: 'center' },
   logoWrap: { alignItems: 'center', marginBottom: spacing.xl },
-  logoImage: {
-    width: 88,
-    height: 88,
+  logoCircle: {
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: spacing.md,
   },
+  logoText: { color: colors.white, fontSize: 24, fontWeight: '700' },
   subtitle: { ...typography.caption, marginTop: 4 },
   form: {
     backgroundColor: colors.card,
@@ -89,6 +94,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: 12,
     fontSize: 15,
+    color: colors.text,
     backgroundColor: colors.background,
   },
   errorText: { color: colors.danger, marginTop: spacing.sm },
