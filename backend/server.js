@@ -21,6 +21,11 @@ if (missing.length > 0) {
 
 const app = express();
 
+// Railway (and most PaaS hosts) sit the app behind a reverse proxy.
+// Without this, express-rate-limit can't correctly read the real client IP
+// from X-Forwarded-For, and throws a ValidationError on every request.
+app.set('trust proxy', 1);
+
 app.use(helmet());
 
 // Restrict CORS to a known allowlist rather than accepting requests from any
