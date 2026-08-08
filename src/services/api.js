@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getToken } from '../utils/tokenStorage';
 
 // Deployed backend on Railway (MongoDB Atlas as the database).
-export const BASE_URL = 'https://mobileapplication-production-4e2b.up.railway.app/api';
+export const BASE_URL = 'https://innosetbackend-production.up.railway.app/api';
 
 const api = axios.create({
   baseURL: BASE_URL,
