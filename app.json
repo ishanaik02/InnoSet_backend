@@ -6,9 +6,6 @@
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "icon": "./assets/icon.png",
-    "splash": {
-      "backgroundColor": "#0B5FFF"
-    },
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.innovativeengineers.innoset",
@@ -16,14 +13,15 @@
         "NSLocationWhenInUseUsageDescription": "We need your location to track trip distance for TA/DA calculation.",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "We need your location in the background to keep tracking your trip route.",
         "NSCameraUsageDescription": "Camera access is needed to capture receipts and bills.",
-        "NSPhotoLibraryUsageDescription": "Photo access is needed to upload receipts and bills."
-      },
-      "backgroundModes": [
-        "location"
-      ]
+        "NSPhotoLibraryUsageDescription": "Photo access is needed to upload receipts and bills.",
+        "UIBackgroundModes": [
+          "location"
+        ]
+      }
     },
     "android": {
       "package": "com.innovativeengineers.innoset",
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -64,7 +62,6 @@
           "android": {
             "compileSdkVersion": 36,
             "targetSdkVersion": 35,
-            
             "buildToolsVersion": "36.0.0",
             "enableProguardInReleaseBuilds": true,
             "enableShrinkResourcesInReleaseBuilds": true,
