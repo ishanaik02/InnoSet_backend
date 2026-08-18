@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, ScrollView, TouchableOpacity, Switch, Alert } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Location from 'expo-location';
 import Card from '../components/Card';
 import AppButton from '../components/AppButton';
@@ -18,6 +19,7 @@ const TRIP_TYPES = [
 const CONVEYANCE_LABELS = { bike: 'Bike', car: 'Car', bus: 'Bus', train: 'Train' };
 
 export default function NewTripScreen({ navigation }) {
+  const insets = useSafeAreaInsets();
   const { updateTrip } = useTrip();
   const { user } = useAuth();
   const carEligible = isCarEligible(user?.grade);
@@ -87,7 +89,7 @@ export default function NewTripScreen({ navigation }) {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: insets.bottom + spacing.lg }}>
       <Card>
         <Text style={typography.h3}>Start Location</Text>
         <View style={styles.rowInput}>

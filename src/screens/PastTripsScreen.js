@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator, Pressable, Alert } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import Card from '../components/Card';
 import { getTrips, getTripById, deleteTrip } from '../services/tripService';
@@ -27,6 +28,7 @@ function unsubmittedHint(status) {
 }
 
 export default function PastTripsScreen({ navigation }) {
+  const insets = useSafeAreaInsets();
   const { updateTrip: hydrateActiveTrip } = useTrip();
   const [trips, setTrips] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -121,7 +123,7 @@ export default function PastTripsScreen({ navigation }) {
       style={styles.container}
       data={trips}
       keyExtractor={(item, i) => item._id || String(i)}
-      contentContainerStyle={{ padding: spacing.md }}
+      contentContainerStyle={{ padding: spacing.md, paddingBottom: insets.bottom + spacing.lg }}
       renderItem={({ item }) => {
         const isUnsubmitted = DELETABLE_STATUSES.includes(item.status);
         const busy = busyId === item._id;

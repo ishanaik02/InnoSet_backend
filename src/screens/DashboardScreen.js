@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, RefreshControl, Alert, Pressable } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import Card from '../components/Card';
 import StatBox from '../components/StatBox';
@@ -10,6 +11,7 @@ import { getCurrentTrackingState } from '../services/backgroundLocationService';
 import { colors, spacing, typography, radius } from '../theme/theme';
 
 export default function DashboardScreen({ navigation }) {
+  const insets = useSafeAreaInsets();
   const { user, logout } = useAuth();
   const [stats, setStats] = useState({
     totalTrips: 0,
@@ -62,6 +64,7 @@ export default function DashboardScreen({ navigation }) {
   return (
     <ScrollView
       style={styles.container}
+      contentContainerStyle={{ paddingBottom: insets.bottom + spacing.lg }}
       refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
     >
       <View style={styles.header}>

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, ActivityIndicator, Image, TextInput, Alert, Linking, TouchableOpacity } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import Card from '../components/Card';
 import AppButton from '../components/AppButton';
@@ -23,6 +24,7 @@ function formatDateTime(iso) {
 }
 
 export default function AdminTripDetailScreen({ route, navigation }) {
+  const insets = useSafeAreaInsets();
   const { tripId } = route.params;
   const [trip, setTrip] = useState(null);
   const [receiptUris, setReceiptUris] = useState({});
@@ -122,7 +124,7 @@ export default function AdminTripDetailScreen({ route, navigation }) {
   const totalDistance = (trip.outboundDistanceKm || 0) + (trip.returnDistanceKm || 0);
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: insets.bottom + spacing.lg }}>
       <Card>
         <View style={styles.rowBetween}>
           <Text style={typography.h2}>{trip.engineer?.name}</Text>

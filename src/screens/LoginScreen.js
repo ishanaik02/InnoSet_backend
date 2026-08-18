@@ -8,11 +8,13 @@ import {
   Platform,
   Image,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import AppButton from '../components/AppButton';
 import { useAuth } from '../context/AuthContext';
 import { colors, spacing, typography, radius } from '../theme/theme';
 
 export default function LoginScreen() {
+  const insets = useSafeAreaInsets();
   const { login, error } = useAuth();
   const [employeeId, setEmployeeId] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +29,7 @@ export default function LoginScreen() {
 
   return (
     <KeyboardAvoidingView
-      style={styles.container}
+      style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <View style={styles.logoWrap}>

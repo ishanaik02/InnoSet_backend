@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import Card from '../components/Card';
 import AppButton from '../components/AppButton';
@@ -7,6 +8,7 @@ import { getEngineers } from '../services/adminService';
 import { colors, spacing, typography, radius } from '../theme/theme';
 
 export default function AdminEngineersScreen({ navigation }) {
+  const insets = useSafeAreaInsets();
   const [engineers, setEngineers] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -56,7 +58,7 @@ export default function AdminEngineersScreen({ navigation }) {
       style={styles.container}
       data={engineers}
       keyExtractor={(item) => item.id}
-      contentContainerStyle={{ padding: spacing.md }}
+      contentContainerStyle={{ padding: spacing.md, paddingBottom: insets.bottom + spacing.lg }}
       ListHeaderComponent={
         <AppButton
           title="+ Add Engineer"

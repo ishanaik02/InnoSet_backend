@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator, TouchableOpacity, Image, Alert, Pressable } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import Card from '../components/Card';
 import { getAllTrips, getReceiptUri, deleteTrip } from '../services/adminService';
@@ -27,6 +28,7 @@ const FILTERS = [
 ];
 
 export default function AdminTripsScreen({ navigation, route }) {
+  const insets = useSafeAreaInsets();
   const [trips, setTrips] = useState([]);
   const [receiptUris, setReceiptUris] = useState({});
   const [loading, setLoading] = useState(true);
@@ -117,7 +119,7 @@ export default function AdminTripsScreen({ navigation, route }) {
         <FlatList
           data={trips}
           keyExtractor={(item) => item._id}
-          contentContainerStyle={{ padding: spacing.md }}
+          contentContainerStyle={{ padding: spacing.md, paddingBottom: insets.bottom + spacing.lg }}
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => navigation.navigate('AdminTripDetail', { tripId: item._id })}>
               <Card>

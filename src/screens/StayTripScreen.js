@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, FlatList, Image, Alert } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Location from 'expo-location';
 import * as ImagePicker from 'expo-image-picker';
 import Card from '../components/Card';
 import AppButton from '../components/AppButton';
 import OpenStreetMap from '../components/OpenStreetMap';
+import LocationDisclosureModal from '../components/LocationDisclosureModal';
 import { useTrip } from '../context/TripContext';
 import { calculateRouteDistanceKm } from '../utils/distanceCalculator';
 import { deriveStageFromTrip } from '../utils/tripStage';
@@ -22,9 +24,11 @@ import { colors, spacing, typography, radius } from '../theme/theme';
 const EXPENSE_TYPES = ['hotel', 'food', 'other'];
 
 export default function StayTripScreen({ navigation }) {
+  const insets = useSafeAreaInsets();
   const { activeTrip, updateTrip, addOutboundPoint, addReturnPoint, addStayExpense, updateStayExpenseByUri } = useTrip();
   const [stage, setStage] = useState(() => deriveStageFromTrip(activeTrip));
   const stageRef = useRef('idle');
+  const [showDisclosure, setShowDisclosure] = useState(false);
 
   useEffect(() => {
     stageRef.current = stage;
@@ -90,6 +94,13 @@ export default function StayTripScreen({ navigation }) {
       }
       updateTrip({ id: tripId });
     }
+
+    setShowDisclosure(true);
+  };
+
+  const handleAcceptLocation = async () => {
+    setShowDisclosure(false);
+    const tripId = activeTrip._id || activeTrip.id;
 
     const granted = await requestBackgroundLocationPermissions();
     if (!granted) {
@@ -218,6 +229,11 @@ export default function StayTripScreen({ navigation }) {
       keyExtractor={(_, i) => String(i)}
       ListHeaderComponent={
         <>
+          <LocationDisclosureModal 
+            visible={showDisclosure} 
+            onAccept={handleAcceptLocation} 
+            onDecline={() => setShowDisclosure(false)} 
+          />
           {region && (
             <View style={styles.mapWrap}>
               <OpenStreetMap
@@ -298,7 +314,7 @@ export default function StayTripScreen({ navigation }) {
           <Text style={styles.expenseAmount}>₹{item.amount}</Text>
         </Card>
       )}
-      contentContainerStyle={{ paddingBottom: spacing.xl }}
+      contentContainerStyle={{ paddingBottom: insets.bottom + spacing.xl }}
     />
   );
 }

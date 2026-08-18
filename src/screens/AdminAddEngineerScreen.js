@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TextInput, Alert } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Card from '../components/Card';
 import AppButton from '../components/AppButton';
 import { createEngineer } from '../services/adminService';
@@ -16,6 +17,7 @@ function generateTempPassword() {
 }
 
 export default function AdminAddEngineerScreen({ navigation }) {
+  const insets = useSafeAreaInsets();
   const [name, setName] = useState('');
   const [employeeId, setEmployeeId] = useState('');
   const [email, setEmail] = useState('');
@@ -54,7 +56,7 @@ export default function AdminAddEngineerScreen({ navigation }) {
   };
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={{ padding: spacing.md }}>
+    <ScrollView style={styles.container} contentContainerStyle={{ padding: spacing.md, paddingBottom: insets.bottom + spacing.lg }}>
       <Card>
         <Text style={typography.h3}>Engineer Details</Text>
         <Text style={[typography.caption, { marginBottom: spacing.sm }]}>

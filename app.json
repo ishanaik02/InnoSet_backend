@@ -2,7 +2,7 @@
   "expo": {
     "name": "InnoSet",
     "slug": "service-engineer-trip-app",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "icon": "./assets/icon.png",
@@ -21,7 +21,7 @@
     },
     "android": {
       "package": "com.innovativeengineers.innoset",
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -61,7 +61,7 @@
         {
           "android": {
             "compileSdkVersion": 36,
-            "targetSdkVersion": 35,
+            "targetSdkVersion": 36,
             "buildToolsVersion": "36.0.0",
             "enableProguardInReleaseBuilds": true,
             "enableShrinkResourcesInReleaseBuilds": true,

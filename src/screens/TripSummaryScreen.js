@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, Image, Alert } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
 import * as DocumentPicker from 'expo-document-picker';
 import Card from '../components/Card';
@@ -13,6 +14,7 @@ import { submitTrip, updateTrip as updateTripApi, uploadReceipt } from '../servi
 import { colors, spacing, typography, radius } from '../theme/theme';
 
 export default function TripSummaryScreen({ navigation }) {
+  const insets = useSafeAreaInsets();
   const { activeTrip, updateTrip, addReceipt, resetTrip } = useTrip();
   const { user } = useAuth();
   const [ticketAmount, setTicketAmount] = useState(String(activeTrip.ticketAmount || ''));
@@ -140,7 +142,7 @@ export default function TripSummaryScreen({ navigation }) {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: insets.bottom + spacing.lg }}>
       <Card>
         <Text style={typography.h2}>Trip Summary</Text>
         <SummaryRow label="Start" value={activeTrip.startLocation} />

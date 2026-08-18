@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, Alert } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Location from 'expo-location';
 import Card from '../components/Card';
 import AppButton from '../components/AppButton';
 import OpenStreetMap from '../components/OpenStreetMap';
+import LocationDisclosureModal from '../components/LocationDisclosureModal';
 import { useTrip } from '../context/TripContext';
 import { createTrip } from '../services/tripService';
 import { calculateRouteDistanceKm } from '../utils/distanceCalculator';
@@ -21,11 +23,13 @@ import { colors, spacing, typography } from '../theme/theme';
 // Trip stages for a Round Trip, matching the spec's flow exactly:
 // idle -> outbound (Start Trip) -> at_site (Reach Site) -> return (Complete Visit & Return) -> completed (End Trip)
 export default function RoundTripScreen({ navigation }) {
+  const insets = useSafeAreaInsets();
   const { activeTrip, updateTrip, addOutboundPoint, addReturnPoint } = useTrip();
   const [stage, setStage] = useState(() => deriveStageFromTrip(activeTrip));
   const stageRef = useRef('idle');
   const locationSubscriptionRef = useRef(null);
   const [region, setRegion] = useState(null);
+  const [showDisclosure, setShowDisclosure] = useState(false);
 
   useEffect(() => {
     stageRef.current = stage;
@@ -101,6 +105,13 @@ export default function RoundTripScreen({ navigation }) {
       updateTrip({ id: tripId });
     }
 
+    setShowDisclosure(true);
+  };
+
+  const handleAcceptLocation = async () => {
+    setShowDisclosure(false);
+    const tripId = activeTrip._id || activeTrip.id;
+
     const granted = await requestBackgroundLocationPermissions();
     if (!granted) {
       Alert.alert(
@@ -168,7 +179,12 @@ export default function RoundTripScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
+      <LocationDisclosureModal 
+        visible={showDisclosure} 
+        onAccept={handleAcceptLocation} 
+        onDecline={() => setShowDisclosure(false)} 
+      />
       <View style={styles.mapWrap}>
         {region && (
           <OpenStreetMap

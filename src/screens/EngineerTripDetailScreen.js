@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import Card from '../components/Card';
 import OpenStreetMap from '../components/OpenStreetMap';
@@ -27,6 +28,7 @@ function formatDateTime(iso) {
 }
 
 export default function EngineerTripDetailScreen({ route }) {
+  const insets = useSafeAreaInsets();
   const { tripId } = route.params;
   const [trip, setTrip] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -55,7 +57,7 @@ export default function EngineerTripDetailScreen({ route }) {
   const claimedDistance = trackedDistance + (trip.additionalKm || 0);
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: insets.bottom + spacing.lg }}>
       <Card>
         <View style={styles.rowBetween}>
           <Text style={typography.h2}>{trip.destination}</Text>
